@@ -215,12 +215,12 @@ class face
 
 face side[6] //creating six faces and initialising  its elements
   { 
-  ("YOGRBYWRR"),//TOP FACE ELEMENTS 
-  ("GOOWBWWRO"),//BOTTOM FACE ELEMENTS (oppo of top face)   |    1 2 3
-  ("RGRROBWOW"),//FRONT FACE ELEMENTS                       |    8 9 4
-  ("YBYYOGBWG"),//RIGHT FACE ELEMENTS                       |    7 6 5
-  ("RGOYGBWOY"),//BACK FACE ELEMENTS
-  ("BYGWRGYBB") //LEFT FACE ELEMENTS
+  ("OOWRYGRBR"),//TOP FACE ELEMENTS 
+  ("OOYROBYRO"),//BOTTOM FACE ELEMENTS (oppo of top face)   |    1 2 3
+  ("WWORRWGOB"),//FRONT FACE ELEMENTS                       |    8 9 4
+  ("BYGGBWBBW"),//RIGHT FACE ELEMENTS                       |    7 6 5
+  ("RWYGGBWOG"),//BACK FACE ELEMENTS
+  ("GYBYWGRYY") //LEFT FACE ELEMENTS
   };
 
 

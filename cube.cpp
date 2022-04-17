@@ -375,8 +375,8 @@ int main()
   //                                     CORNER ALLIGNMENT
   //                                 !!!!!!LAST ALGORITHM!!!!!
   cout<<"\n\ncorner allignment\n\n";
-
-  while (tst)
+  
+  while (!cube_cheaker(side))
   {
     for(short i=tl;i<=bl;i++)
     {
