@@ -47,7 +47,7 @@ class face
     face* adj[5]; //address of 4 adjecent faces and opposite face
 
 
-    face (const char array[10]) //construcor function for initialising elements of a face (10th for \0)
+    void initialize_face_elements (const char array[10]) //construcor function for initialising elements of a face (10th for \0)
     { 
         
 		short iter=0;
@@ -62,7 +62,7 @@ class face
     }   
 
 
-    void setadj (face *_1,face *_2,face *_3,face *_4,face *_5)   //setting adj faces
+    void set_adj (face *_1,face *_2,face *_3,face *_4,face *_5)   //setting adj faces
     {     
         
        adj[UP]    = _1;
@@ -95,7 +95,7 @@ class face
     } 
 
 
-    void setcompanions (char *_1,char *_2,char *_3,char *_4,char *_5,char *_6,char *_7,char *_8,char *_9,char *_10,char *_11,char *_12)  //vcom    hcom   com  all next by next in continuous order
+    void set_companions (char *_1,char *_2,char *_3,char *_4,char *_5,char *_6,char *_7,char *_8,char *_9,char *_10,char *_11,char *_12)  //vcom    hcom   com  all next by next in continuous order
                              
     {
          char* comp[12]={_1,_2,_3,_4,_5,_6,_7,_8,_9,_10,_11,_12};
@@ -213,62 +213,82 @@ class face
 
 
 
-face side[6] //creating six faces and initialising  its elements
-  { 
-  ("OOWRYGRBR"),//TOP FACE ELEMENTS 
-  ("OOYROBYRO"),//BOTTOM FACE ELEMENTS (oppo of top face)   |    1 2 3
-  ("WWORRWGOB"),//FRONT FACE ELEMENTS                       |    8 9 4
-  ("BYGGBWBBW"),//RIGHT FACE ELEMENTS                       |    7 6 5
-  ("RWYGGBWOG"),//BACK FACE ELEMENTS
-  ("GYBYWGRYY") //LEFT FACE ELEMENTS
-  };
+face side[6]; //creating six faces 
+
+
+ 
 
 
 
 
-void SETUP_CUBE() //a function that compines the above faces to produce the cube
+void SETUP_CUBE(char mode[10]) //a function that intialize and  compines the above faces to produce the cube
 
 {
+
+    if (mode=="DEFAULT")
+    {
+    //default initialization
+    side[tp].initialize_face_elements("RROBYWBOY");//FOR TOP FACE
+    side[bt].initialize_face_elements("YBOWWOWYW");//FOR BOTTOM FACE (oppo top)   0 1 2
+    side[fr].initialize_face_elements("RBGYRYBGO");//FOR FRONT FACE               7 8 3
+    side[rt].initialize_face_elements("OOBRGRGGB");//FOR RIGHT FACE               6 5 4
+    side[bk].initialize_face_elements("YWYRWYRGR");//FOR BACK FACE
+    side[lt].initialize_face_elements("BGWWOOGBG");//FOR LEFT FACE
+    }
+    else if (mode="INPUT")
+    //input directly during run time
+    {
+        char temp[10];
+        char *facename[6]={"TOP","BOTTOM","FRONT","RIGHT","BACK","LEFT"};
+        for(int i=0;i<=5;i++)
+        {
+            cout<<"\nenter "<<facename[i]<<" face elements\n";
+            cin>>temp;
+            side[i].initialize_face_elements(temp);
+        }
+        
+    }
+    
     //setting the companions of each element in a face
 
-    side[tp].setcompanions (&side[bk].cor[tr].col, &side[lt].cor[tl].col, &side[bk].mid[tm].col,     
+    side[tp].set_companions (&side[bk].cor[tr].col, &side[lt].cor[tl].col, &side[bk].mid[tm].col,     
                             &side[bk].cor[tl].col, &side[rt].cor[tr].col, &side[rt].mid[tm].col,     
                             &side[fr].cor[tr].col, &side[rt].cor[tl].col, &side[fr].mid[tm].col,    
                             &side[fr].cor[tl].col, &side[lt].cor[tr].col, &side[lt].mid[tm].col );  
 
-    side[bt].setcompanions (&side[bk].cor[bl].col, &side[rt].cor[br].col, &side[bk].mid[bm].col,  
+    side[bt].set_companions (&side[bk].cor[bl].col, &side[rt].cor[br].col, &side[bk].mid[bm].col,  
                             &side[bk].cor[br].col, &side[lt].cor[bl].col, &side[lt].mid[bm].col,  
                             &side[fr].cor[bl].col, &side[lt].cor[br].col, &side[fr].mid[bm].col,
                             &side[fr].cor[br].col, &side[rt].cor[bl].col, &side[rt].mid[bm].col );
 
-    side[fr].setcompanions ( &side[tp].cor[bl].col, &side[lt].cor[tr].col, &side[tp].mid[bm].col,  
+    side[fr].set_companions ( &side[tp].cor[bl].col, &side[lt].cor[tr].col, &side[tp].mid[bm].col,  
                             &side[tp].cor[br].col, &side[rt].cor[tl].col, &side[rt].mid[lm].col,  
                             &side[bt].cor[bl].col, &side[rt].cor[bl].col, &side[bt].mid[bm].col,
                             &side[bt].cor[br].col, &side[lt].cor[br].col, &side[lt].mid[rm].col );
 
-    side[rt].setcompanions (&side[tp].cor[br].col, &side[fr].cor[tr].col, &side[tp].mid[rm].col,     
+    side[rt].set_companions (&side[tp].cor[br].col, &side[fr].cor[tr].col, &side[tp].mid[rm].col,     
                             &side[tp].cor[tr].col, &side[bk].cor[tl].col, &side[bk].mid[lm].col,
                             &side[bt].cor[tl].col, &side[bk].cor[bl].col, &side[bt].mid[lm].col,   
                             &side[bt].cor[bl].col, &side[fr].cor[br].col, &side[fr].mid[rm].col );  
 
-    side[bk].setcompanions (&side[tp].cor[tr].col, &side[rt].cor[tr].col, &side[tp].mid[tm].col,  
+    side[bk].set_companions (&side[tp].cor[tr].col, &side[rt].cor[tr].col, &side[tp].mid[tm].col,  
                             &side[tp].cor[tl].col, &side[lt].cor[tl].col, &side[lt].mid[lm].col,  
                             &side[bt].cor[tr].col, &side[lt].cor[bl].col, &side[bt].mid[tm].col,
                             &side[bt].cor[tl].col, &side[rt].cor[br].col, &side[rt].mid[rm].col );
 
-    side[lt].setcompanions (&side[tp].cor[tl].col, &side[bk].cor[tr].col, &side[tp].mid[lm].col,  
+    side[lt].set_companions (&side[tp].cor[tl].col, &side[bk].cor[tr].col, &side[tp].mid[lm].col,  
                             &side[tp].cor[bl].col, &side[fr].cor[tl].col, &side[fr].mid[lm].col,  
                             &side[bt].cor[br].col, &side[fr].cor[bl].col, &side[bt].mid[rm].col,
                             &side[bt].cor[tr].col, &side[bk].cor[br].col, &side[bk].mid[rm].col );
 
     //connecting the adjecent sides and opposite side to a face (ORDER-TOP,RIGHT,BOTTOM,LEFT,BACK) 
 
-    side[tp].setadj (&side[bk],&side[rt],&side[fr],&side[lt],&side[bt]);   
-    side[bt].setadj (&side[bk],&side[lt],&side[fr],&side[rt],&side[tp]);
-    side[fr].setadj (&side[tp],&side[rt],&side[bt],&side[lt],&side[bk]);
-    side[rt].setadj (&side[tp],&side[bk],&side[bt],&side[fr],&side[lt]);
-    side[bk].setadj (&side[tp],&side[lt],&side[bt],&side[rt],&side[fr]);
-    side[lt].setadj (&side[tp],&side[fr],&side[bt],&side[bk],&side[rt]);  
+    side[tp].set_adj (&side[bk],&side[rt],&side[fr],&side[lt],&side[bt]);   
+    side[bt].set_adj (&side[bk],&side[lt],&side[fr],&side[rt],&side[tp]);
+    side[fr].set_adj (&side[tp],&side[rt],&side[bt],&side[lt],&side[bk]);
+    side[rt].set_adj (&side[tp],&side[bk],&side[bt],&side[fr],&side[lt]);
+    side[bk].set_adj (&side[tp],&side[lt],&side[bt],&side[rt],&side[fr]);
+    side[lt].set_adj (&side[tp],&side[fr],&side[bt],&side[bk],&side[rt]);  
 
 }
        

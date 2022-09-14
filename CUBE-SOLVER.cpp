@@ -1,5 +1,5 @@
 #include <iostream>
-#include "CUBE-STRUCT.cpp"
+#include "CUBE-STRUCT.hpp""
 using namespace std;
 
 
@@ -31,7 +31,7 @@ int main()
   bool tst;
   face * control;
 
-  SETUP_CUBE(); //creates the cube 
+  SETUP_CUBE("DEFAULT"); //creates the cube and selects the mode of input (INPUT or DEFAULT)
  
   printcube(side); 
 
@@ -425,7 +425,7 @@ int main()
 
   printcube (side);
 
-
+  getchar();
   return 0;
 }
 
