@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void SETUP_CUBE(); //MASTER FUNCTION (CREATES THE CUBE USING 6 FACES)
+void SETUP_CUBE(char mode); //MASTER FUNCTION (CREATES THE CUBE USING 6 FACES)
 
 enum {UP=0,RIGHT,DOWN,LEFT,OPPO};        //FOR ADJS
 enum {tl=0,tr,br,bl};            		 //FOR CORNERS
@@ -215,17 +215,11 @@ class face
 
 face side[6]; //creating six faces 
 
-
- 
-
-
-
-
-void SETUP_CUBE(char mode[10]) //a function that intialize and  compines the above faces to produce the cube
+void SETUP_CUBE(char mode) //a function that intialize and  compines the above faces to produce the cube
 
 {
 
-    if (mode=="DEFAULT")
+    if (mode == 'D')
     {
     //default initialization
     side[tp].initialize_face_elements("RROBYWBOY");//FOR TOP FACE
@@ -235,11 +229,11 @@ void SETUP_CUBE(char mode[10]) //a function that intialize and  compines the abo
     side[bk].initialize_face_elements("YWYRWYRGR");//FOR BACK FACE
     side[lt].initialize_face_elements("BGWWOOGBG");//FOR LEFT FACE
     }
-    else if (mode="INPUT")
+    else if (mode == 'I')
     //input directly during run time
     {
         char temp[10];
-        char *facename[6]={"TOP","BOTTOM","FRONT","RIGHT","BACK","LEFT"};
+        const char *facename[6]={"TOP","BOTTOM","FRONT","RIGHT","BACK","LEFT"};
         for(int i=0;i<=5;i++)
         {
             cout<<"\nenter "<<facename[i]<<" face elements\n";

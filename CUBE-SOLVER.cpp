@@ -1,7 +1,4 @@
-#include <iostream>
-#include "CUBE-STRUCT.hpp""
-using namespace std;
-
+#include "CUBE-STRUCT.hpp"
 
 
 bool cube_cheaker      (face array[6]);         
@@ -31,7 +28,7 @@ int main()
   bool tst;
   face * control;
 
-  SETUP_CUBE("DEFAULT"); //creates the cube and selects the mode of input (INPUT or DEFAULT)
+  SETUP_CUBE('D'); //creates the cube and selects the mode of input (I=(INPUT) or D=(DEFAULT))
  
   printcube(side); 
 
@@ -428,40 +425,6 @@ int main()
   getchar();
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
