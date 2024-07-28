@@ -63,13 +63,12 @@ class face
 
 
     void set_adj (face *_1,face *_2,face *_3,face *_4,face *_5)   //setting adj faces
-    {     
-        
-       adj[UP]    = _1;
-       adj[RIGHT] = _2;
-       adj[DOWN]  = _3;
-       adj[LEFT]  = _4;
-       adj[OPPO]  = _5;
+    {        
+        adj[UP]    = _1;
+        adj[RIGHT] = _2;
+        adj[DOWN]  = _3;
+        adj[LEFT]  = _4;
+        adj[OPPO]  = _5;
     } 
 
 
@@ -229,17 +228,19 @@ void SETUP_CUBE() //a function that intialize and  compines the above faces to p
 
     if (mode == 'D')
     {
-    //default initialization
-    side[tp].initialize_face_elements("RROBYWBOY");//FOR TOP FACE
-    side[bt].initialize_face_elements("YBOWWOWYW");//FOR BOTTOM FACE (oppo top)   0 1 2
-    side[fr].initialize_face_elements("RBGYRYBGO");//FOR FRONT FACE               7 8 3
-    side[rt].initialize_face_elements("OOBRGRGGB");//FOR RIGHT FACE               6 5 4
-    side[bk].initialize_face_elements("YWYRWYRGR");//FOR BACK FACE
-    side[lt].initialize_face_elements("BGWWOOGBG");//FOR LEFT FACE
+        //default initialization
+        side[tp].initialize_face_elements("RROBYWBOY");//FOR TOP FACE
+        side[bt].initialize_face_elements("YBOWWOWYW");//FOR BOTTOM FACE (oppo top)   0 1 2
+        side[fr].initialize_face_elements("RBGYRYBGO");//FOR FRONT FACE               7 8 3
+        side[rt].initialize_face_elements("OOBRGRGGB");//FOR RIGHT FACE               6 5 4
+        side[bk].initialize_face_elements("YWYRWYRGR");//FOR BACK FACE
+        side[lt].initialize_face_elements("BGWWOOGBG");//FOR LEFT FACE
     }
-    else if (mode == 'I')
+
     //input directly during run time
+    else if (mode == 'I')
     {
+
         char temp[10];
         const char *facename[6]={"TOP","BOTTOM","FRONT","RIGHT","BACK","LEFT"};
         for(int i=0;i<=5;i++)
@@ -247,8 +248,7 @@ void SETUP_CUBE() //a function that intialize and  compines the above faces to p
             cout<<"\nenter "<<facename[i]<<" face elements\n";
             cin>>temp;
             side[i].initialize_face_elements(temp);
-        }
-        
+        }        
     }
     
     //setting the companions of each element in a face
