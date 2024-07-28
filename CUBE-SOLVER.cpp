@@ -270,10 +270,7 @@ int main()
             }
 
           else
-            {
-              cout<<"debugging";
-              continue;
-            }
+              continue;          
         }
     }    
 
