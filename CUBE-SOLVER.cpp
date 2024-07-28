@@ -28,7 +28,7 @@ int main()
   bool tst;
   face * control;
 
-  SETUP_CUBE('D'); //creates the cube and selects the mode of input (I=(INPUT) or D=(DEFAULT))
+  SETUP_CUBE(); //creates the cube and selects the mode of input (I=(INPUT) or D=(DEFAULT))
  
   printcube(side); 
 
@@ -257,20 +257,23 @@ int main()
     {
       for (short i=fr;i<=lt;i++)
         {
-          if (side[i].mid[rm].col != side[i].center && *side[i].mid[rm].com != side[i].adj[RIGHT]->center)
+          if (side[i].mid[rm].col != side[i].center)
             {
               l2_solver(&side[i],'r');
               break;
             }
 
-          else if (side[i].mid[lm].col != side[i].center && *side[i].mid[lm].com != side[i].adj[LEFT]->center)
+          else if (side[i].mid[lm].col != side[i].center)
             {
               l2_solver(&side[i],'l');
               break;
             }
 
-            else
+          else
+            {
+              cout<<"debugging";
               continue;
+            }
         }
     }    
 

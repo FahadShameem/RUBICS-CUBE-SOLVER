@@ -215,9 +215,17 @@ class face
 
 face side[6]; //creating six faces 
 
-void SETUP_CUBE(char mode) //a function that intialize and  compines the above faces to produce the cube
+void SETUP_CUBE() //a function that intialize and  compines the above faces to produce the cube
 
 {
+    char mode;
+    cout<<"enter the mode\nI - for input mode\nD- for default cube config\n";
+    cin>>mode;
+    
+    if(mode != 'I')
+    {
+        mode='D';
+    }
 
     if (mode == 'D')
     {
